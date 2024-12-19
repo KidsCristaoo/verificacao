@@ -24,14 +24,21 @@
           // Bots são redirecionados para uma página alternativa
           window.location.href = "https://example.com/bot-friendly-page"; // Redirecionar para uma página amigável para bots
         } else {
-          // Mostrar conteúdo para usuários humanos
+          // Mostrar conteúdo para humanos
           console.log("Visitante humano detectado.");
         }
       });
 
       function simulateRecaptcha() {
-        alert("Você passou na verificação do reCAPTCHA (simulação).");
-        window.location.href = "https://kidscristaoo.github.io/kidscristaoo/"; // Redirecionar para o site real
+        const recaptchaCheckbox = document.getElementById('recaptcha-checkbox');
+        const recaptchaErrorMessage = document.getElementById('recaptcha-error-message');
+
+        if (recaptchaCheckbox.checked) {
+          alert("Você passou na verificação do reCAPTCHA (simulação).");
+          window.location.href = "https://kidscristaoo.github.io/kidscristaoo/"; // Redirecionar para o site real
+        } else {
+          recaptchaErrorMessage.style.display = 'block';
+        }
       }
     </script>
     <style>
@@ -39,27 +46,46 @@
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
-        background-color: #f4f4f9;
+        background-color: #f4f7fa;
         color: #333;
+        background-image: url('https://example.com/sua-imagem-de-fundo.jpg'); /* Imagem de fundo */
+        background-size: cover;
+        background-position: center;
       }
 
       .container {
         max-width: 800px;
-        margin: 0 auto;
+        margin: 50px auto;
         padding: 20px;
         text-align: center;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        font-size: 36px;
+        color: #007BFF;
+        margin-bottom: 20px;
+      }
+
+      p {
+        font-size: 18px;
+        color: #555;
+        margin-bottom: 30px;
       }
 
       .cta-button {
-        display: none;
-        padding: 10px 20px;
+        display: inline-block;
+        padding: 15px 30px;
         font-size: 18px;
-        color: #fff;
+        color: white;
         background-color: #007BFF;
         border: none;
         border-radius: 5px;
         text-decoration: none;
         cursor: pointer;
+        margin-top: 20px;
       }
 
       .cta-button:hover {
@@ -67,16 +93,51 @@
       }
 
       .recaptcha-container {
-        margin-top: 20px;
-        display: inline-block;
-        padding: 15px;
+        margin-top: 30px;
         background-color: #f1f1f1;
-        border-radius: 5px;
-        text-align: center;
+        padding: 20px;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        display: inline-block;
       }
 
       .recaptcha-checkbox {
         margin-right: 10px;
+        accent-color: #007BFF;
+      }
+
+      .recaptcha-error-message {
+        display: none;
+        color: red;
+        margin-top: 10px;
+      }
+
+      .recaptcha-checkbox + label {
+        font-size: 16px;
+        color: #555;
+      }
+
+      .recaptcha-button {
+        margin-top: 20px;
+        padding: 12px 25px;
+        font-size: 16px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .recaptcha-button:hover {
+        background-color: #218838;
+      }
+
+      /* Ícone de reCAPTCHA */
+      .recaptcha-icon {
+        width: 24px;
+        height: 24px;
+        vertical-align: middle;
+        margin-right: 8px;
       }
     </style>
   </head>
@@ -85,15 +146,17 @@
       <h1>Bem-vindo à Kids Cristão</h1>
       <p>Transforme a vida dos seus pequenos com nossos conteúdos exclusivos para crianças cristãs.</p>
 
-      <!-- Simulação de reCAPTCHA -->
       <div class="recaptcha-container">
+        <!-- Ícone do reCAPTCHA -->
+        <img src="https://www.google.com/recaptcha/intro/images/recaptcha-logo.png" alt="reCAPTCHA Logo" class="recaptcha-icon" />
         <input type="checkbox" class="recaptcha-checkbox" id="recaptcha-checkbox" />
         <label for="recaptcha-checkbox">Eu não sou um robô</label>
         <br>
-        <button onclick="simulateRecaptcha()">Confirmar</button>
+        <button class="recaptcha-button" onclick="simulateRecaptcha()">Confirmar</button>
+        <p id="recaptcha-error-message" class="recaptcha-error-message">Por favor, marque a caixa para confirmar que você não é um robô.</p>
       </div>
 
-      <a href="https://example.com/pagina-de-vendas" id="cta-button" class="cta-button">Saiba Mais</a>
+      <a href="https://example.com/pagina-de-vendas" class="cta-button">Saiba Mais</a>
     </div>
   </body>
 </html>
